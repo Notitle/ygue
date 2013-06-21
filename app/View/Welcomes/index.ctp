@@ -1,7 +1,13 @@
-<?php
+<?php 
+$this->set('title_for_layout','bienvenue dans la boutique')?>
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+
+
+<?php foreach($sliders as $s): $s=$s['Slider'] ?> 
+
+<div>
+    <?php echo $s['link'] ?><br/>
+    <?php echo $s['title'] ?>
+</div>
+
+<?php endforeach; ?>

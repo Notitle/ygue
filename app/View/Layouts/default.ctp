@@ -43,7 +43,7 @@
          */
         echo $this->html->link('Contact', array('controller' => 'contacts', 'action' => 'index'), array('title' => 'Contactez-nous'));
         echo "<br/>";
-        echo $this->Html->link($title_for_layout, '/', array('title' => 'accueil', 'class' => 'osef', 'escape' => true));
+        echo $this->Html->link("Home", '/', array('title' => 'accueil', 'class' => 'osef', 'escape' => true));
         ?>
     </body> 
 </html>
