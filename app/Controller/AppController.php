@@ -48,7 +48,14 @@ class AppController extends Controller {
      * appellée avant le rendu, une fois que l'action d'un controller est executée mais avant que la vue ne soirt affichée
      */
     public function beforeRender() {
-        
+        if ($this->layout == 'admin') {
+            if (!$this->Session->check('Cart')) {
+                $cart = array();
+            } else {
+                $cart = $this->Session->read('Cart');
+            }
+            $this->set('cart_for_layout',$cart);
+        }
     }
 
 }

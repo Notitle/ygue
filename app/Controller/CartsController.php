@@ -22,10 +22,6 @@ class CartsController extends AppController {
         } else {
             $cart = $this->Session->read('Cart');
         }
-        echo "<pre>";
-        var_dump($cart);
-        die;
-        echo"</pre>";
 
         $cartKey = $this->request->data['Product']['id'] . '-' . $this->request->data['Product']['name'];
 
@@ -35,6 +31,12 @@ class CartsController extends AppController {
         if ($this->Product->exists()) {
 
             if (!array_key_exists($cartKey, $cart)) {
+                $p=$this->product->find('first',array(
+                    'fields'=>array('Product.price')
+                    //////////////////////////////////////////////////
+                    //AJOUTER PRIX BD
+                    //////////////////////////////////////////////////
+                ));
                 $cart[$cartKey] = array(
                     'product_id' => $this->request->data['Product']['id'],
                     'name' => $this->request->data['Product']['name'],
@@ -45,6 +47,11 @@ class CartsController extends AppController {
             }
             $this->Session->write('Cart', $cart);
         }
+                echo "<pre>";
+        var_dump($cart);
+        die;
+        echo"</pre>";
+
         $this->redirect($this->referer());
     }
 
