@@ -6,12 +6,14 @@
  */
 
 /**
- * Description of AppController
+ * Description of ContactController
  *
- * @author internet07
+ * @author Notitle
  */
-class AppController extends Controller{
-  
+class ContactController {
+    public function index(){
+        
+    }
 }
 
 ?>

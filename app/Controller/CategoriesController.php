@@ -9,8 +9,15 @@ App::uses('AppController', 'Controller');
  */
 class CategoriesController extends AppController {
 
-    public function index() {
+    public function index($id=null,$slug=null) {
         $d = array();
+        
+        if($id!=null){
+            $cond=array('Product.category_id'=>$id);
+        }else{
+            $cond=array();
+        }
+        
         $d['categories'] = $this->Category->find('all', array(
             'fields' => array('Category.id', 'Category.name'),
             'order' => array('Category.name'),
@@ -24,9 +31,9 @@ class CategoriesController extends AppController {
                 'Product.image',
                 'Product.description'
             ),
-            'conditions' => array(),
+            'conditions' => $cond,
             'order' => array('Product.created' => 'DESC'),
-            'limit' => 8,
+            'limit' => 4,
             'recursive' => 0
         );
 

@@ -58,12 +58,13 @@ class Product extends AppModel {
         )
     );
 
-    public function afterFind($products, $primary = false) {
-
-        foreach ($products as &$p) {
-            if (isset($p['Product']['id']) && isset($p['Product']['name'])) {
+    public function afterFind($Product, $primary = false) {
+        
+        foreach($Product as &$p)
+        {
+            if(isset($p['Product']['id']) && isset($p['Product']['name']))
+            {
                 $p['Product']['slug'] = Inflector::slug(strtolower($p['Product']['name']), '-');
-
                 $p['Product']['link'] = array(
                     'controller' => 'products',
                     'action' => 'view',
@@ -73,14 +74,40 @@ class Product extends AppModel {
                     'admin' => false
                 );
             }
-            if (isset($p['Product']['image'])) {
+            
+            if(isset($p['Product']['image']))
+            {
                 $visuel = substr($p['Product']['image'], 0, strpos($p['Product']['image'], '.'));
                 $ext = substr($p['Product']['image'], strpos($p['Product']['image'], '.'));
-                $p['Product']['image_path']='/uploads/products/'.$visuel.''.$ext;
+                $p['Product']['image_path'] = '/uploads/products/'.$visuel.''.$ext;
             }
         }
-//        echo "<pre>";var_dump($products);die;echo'</pre>';
-        return $products;
+//         echo "<pre>";var_dump($visuel, $ext);die;echo'</pre>';
+        return $Product;
     }
+    
+
+//        foreach ($products as &$p) {
+//            if (isset($p['Product']['id']) && isset($p['Product']['name'])) {
+//                $p['Product']['slug'] = Inflector::slug(strtolower($p['Product']['name']), '-');
+//
+//                $p['Product']['link'] = array(
+//                    'controller' => 'products',
+//                    'action' => 'view',
+//                    'slug' => $p['Product']['slug'],
+//                    'id' => $p['Product']['id'],
+//                    'ext' => 'html',
+//                    'admin' => false
+//                );
+//            }
+//            if (isset($p['Product']['image'])) {
+//                $visuel = substr($p['Product']['image'], 0, strpos($p['Product']['image'], '.'));
+//                $ext = substr($p['Product']['image'], strpos($p['Product']['image'], '.'));
+//                $p['Product']['image_path']='/uploads/products/'.$visuel.''.$ext;
+//            }
+//        }
+////        echo "<pre>";var_dump($products);die;echo'</pre>';
+//        return $products;
+//    }
 
 }

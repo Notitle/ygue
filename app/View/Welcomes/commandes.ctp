@@ -1,6 +1,7 @@
 <?php $this->set('title_for_layout', 'Commandes') ?>
 
 
+
 <div class="bloc-texte">
 
     <h1>Vous pouvez également commander vos photos de chez vous et profiter de promotions intéressantes <span class="texteturquoise">sans frais d'envoi</span>.<br />

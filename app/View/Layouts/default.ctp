@@ -65,7 +65,7 @@
 
                 <div class="menu">
 
-                    <?php echo $this->html->link('CONTACT', array('controller' => 'welcomes', 'action' => 'contact'), array('class' => 'btn_menu')) ?>
+                    <?php echo $this->html->link('CONTACT', array('controller' => 'Contact', 'action' => 'index'), array('class' => 'btn_menu')) ?>
                     <div class="separation-menu"> </div>
                     <?php echo $this->html->link('IMPRESSIONS', array('controller' => 'welcomes', 'action' => 'impressions'), array('class' => 'btn_menu')) ?>
                     <div class="separation-menu"> </div>

@@ -41,19 +41,34 @@ class Category extends AppModel {
     );
 
     public function afterFind($data, $primary = false) {
-        foreach ($data as $k => &$c) {
-            if (isset($c['Category']['id']) && isset($c['Category']['name'])) {
-                $c['Category']['slug']=  Inflector::slug(strtolower($c['Category']['name']), '-');
-                $c['Category']['link']=array(
-                    'controller'=>'categories',
-                    'action'=>'index',
-                    'slug'=>$c['Category']['slug'],
-                    'id'=> $c['Category']['id'],
-                    'ext'=>'html',
-                    'admin'=>false
+        foreach($data as $k => &$c)
+        {
+            if(isset($c['Category']['id']) && isset($c['Category']['name']))
+            {
+                $c['Category']['slug'] = Inflector::slug(strtolower($c['Category']['name']), '-');
+                $c['Category']['link'] = array(
+                    'controller' => 'categories',
+                    'action' => 'index',
+                    'slug' => $c['Category']['slug'],
+                    'id' => $c['Category']['id'],
+                    'ext' => 'html',
+                    'admin' => false
                 );
             }
         }
+//        foreach ($data as $k => &$c) {
+//            if (isset($c['Category']['id']) && isset($c['Category']['name'])) {
+//                $c['Category']['slug']=  Inflector::slug(strtolower($c['Category']['name']), '-');
+//                $c['Category']['link']=array(
+//                    'controller'=>'categories',
+//                    'action'=>'index',
+//                    'slug'=>$c['Category']['slug'],
+//                    'id'=> $c['Category']['id'],
+//                    'ext'=>'html',
+//                    'admin'=>false
+//                );
+//            }
+//        }
 //        echo "<pre>";var_dump($data);die;echo'</pre>';
         return $data;
     }

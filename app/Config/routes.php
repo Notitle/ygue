@@ -59,9 +59,19 @@ $urls = array(
     '/Cours-photo/*?nbr=:nbr/*',
     '/Cours-photo/*',
 );
+
+
+
 foreach ($urls as $url) {
     Router::connect($url, array('controller' => 'categories', 'action' => 'index'), array('page' => '[0-9]+', 'sort' => '[a-zA-Z0-9\.]+', 'direction' => '[a-zA-Z0-9]{3,4}', 'nbr' => '[0-9]{2,3}'));
 }
+
+
+    Router::connect('/products/view/:slug/:id/*', array('controller' => 'products', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+', 'slug' => "[a-z0-9_\-]+"));
+
+
+
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
