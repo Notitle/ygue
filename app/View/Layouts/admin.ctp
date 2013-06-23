@@ -6,19 +6,15 @@
         <?php echo $this->Html->css("unique") ?>
     </head>
     <body>
+        <div id='head'>
         <h3>PARTIE ADMIIIN LAYOUT FTW</h3>
         <span>menu/session shit</span>
         <?php echo $this->html->link('votre pannier', array('controller' => 'orders', 'action' => 'index')) ?>
         <br/>
 
-        <?php
-        /**
-         * faire varier categories avec products selon la demande !
-         */
-        echo $this->html->link('actu', array('controller' => 'welcomes', 'action' => 'blog'));
-        echo "<br/>";
-        echo $this->html->link('Gallerie', array('controller' => 'categories', "action" => 'index'))
-        ?><br/>
+        <div>
+            <?php echo $this->element('menu_admin') ?>
+        </div>
 
         <form method='post' action='<?php echo $this->html->url(array('controller' => 'products', 'action' => 'search')) ?>'>
             <label for="search">recherche</label>
@@ -32,13 +28,18 @@
                 $this->html->image('logout.png'), array('controller'=>'logout','admin'=>false), array('id'=>'logo', 'title'=>'me deco','escape'=> false ));
         ?>
         <br/><br/> 
+        </div>
+        <div id="content" class="content-center">
         <!-- CONTENU -->
-
-<?php echo $content_for_layout ?>
-
-
+        
+        <?php echo $this->Session->flash(); ?>
+        <?php echo $this->Session->flash('Auth'); ?>
+        <?php echo $content_for_layout ?>
+        
         <!-- /CONTENU -->
+        </div>
         <br/><br/>
+        <div id='foot'>
 <?php
 /**
  * premier parametre-> le nom
@@ -51,5 +52,6 @@ echo $this->html->link('Contact', array('controller' => 'contacts', 'action' => 
 echo "<br/>";
 echo $this->Html->link("Home", '/', array('title' => 'accueil', 'class' => 'osef', 'escape' => true));
 ?>
+            </div>
     </body> 
 </html>

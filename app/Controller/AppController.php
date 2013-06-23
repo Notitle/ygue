@@ -34,12 +34,19 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+    /**
+     * appellée quand le controller est instantiée
+     */
     public function beforeFilter() {
-        if (isset($this->params['prefix']) && $this->params('prefix' == 'admin')) {
+
+        if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
             $this->layout = 'admin';
         }
     }
 
+    /**
+     * appellée avant le rendu, une fois que l'action d'un controller est executée mais avant que la vue ne soirt affichée
+     */
     public function beforeRender() {
         
     }

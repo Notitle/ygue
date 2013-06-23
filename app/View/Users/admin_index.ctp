@@ -1,62 +1,63 @@
-<div class="users index">
-	<h2><?php echo __('Users'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('role'); ?></th>
-			<th><?php echo $this->Paginator->sort('firstname'); ?></th>
-			<th><?php echo $this->Paginator->sort('lastname'); ?></th>
-			<th><?php echo $this->Paginator->sort('email'); ?></th>
-			<th><?php echo $this->Paginator->sort('password'); ?></th>
-			<th><?php echo $this->Paginator->sort('date_birth'); ?></th>
-			<th><?php echo $this->Paginator->sort('billing_firstname'); ?></th>
-			<th><?php echo $this->Paginator->sort('billing_lastname'); ?></th>
-			<th><?php echo $this->Paginator->sort('billing_address'); ?></th>
-			<th><?php echo $this->Paginator->sort('billing_zipcode'); ?></th>
-			<th><?php echo $this->Paginator->sort('billing_city'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($users as $user): ?>
-	<tr>
-		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['role']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['firstname']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['lastname']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['date_birth']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['billing_firstname']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['billing_lastname']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['billing_address']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['billing_zipcode']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['billing_city']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('controller' => 'orders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
-	</ul>
+<?php $this->set('title_for_layout', 'Gestion des utilisateurs') ?>
+<h1>Gestion des utilisateurs</h1>
+<div class='widget'>
+    <div class='widget-title'>
+        <h3>Modifications</h3>
+        <ul>
+            <li>
+                <?php
+                echo $this->html->link(
+                        'Ajouter ', array('action' => 'add', 'admin' => true))
+                ?>
+            </li>
+        </ul>
+    </div>
+    <div class='widget-content'>
+        <table>
+            <thead>
+                <tr>
+                    <th class='id'>ID</th>
+                    <th>Role</th>
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>E-mail</th>   
+                    <th>Date de Naissance</th>
+                    <th>Prenom de facturation</th>
+                    <th>Nom de facturation</th>
+                    <th>Adresse de facturation</th>
+                    <th>Code postal de facturation</th>
+                    <th>Ville de facturation</th>
+                    <th class='action'>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $u): $u = $u['User'] ?>
+                    <tr>
+                        <td class='centered'><?php echo h($u['id']); ?></td>
+                        <td><?php echo h($u['role']); ?></td>
+                        <td><?php echo h($u['firstname']); ?></td>
+                        <td><?php echo h($u['lastname']); ?></td>
+                        <td><?php echo h($u['email']); ?></td>
+                        <td><?php echo h($u['date_birth']); ?></td>
+                        <td><?php echo h($u['billing_firstname']); ?></td>
+                        <td><?php echo h($u['billing_lastname']); ?></td>
+                        <td><?php echo h($u['billing_address']); ?></td>
+                        <td><?php echo h($u['billing_zipcode']); ?></td>
+                        <td><?php echo h($u['billing_city']); ?></td>
+                        <td>
+                            <?php echo $this->Html->link($this->html->image('edit.gif'), array('action' => 'edit', $u['id']), array('escape' => false)); ?>
+                            <?php echo $this->Form->postLink($this->html->image('delete.gif'), array('action' => 'delete', $u['id']), array('escape' => false), 'Etes vous sur de vouloir supprimer '.$u['lastname'].' '.$u['firstname'].' ?'); ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>   
+        <div class="pagination">
+            <?php
+            echo $this->Paginator->prev('< ', array(), null, array('class' => 'prev disabled'));
+            echo $this->Paginator->numbers(array('separator' => ''));
+            echo $this->Paginator->next(' >', array(), null, array('class' => 'next disabled'));
+            ?>
+        </div>
+    </div>
 </div>

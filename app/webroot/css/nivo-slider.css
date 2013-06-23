@@ -1,0 +1,112 @@
+/*
+ * jQuery Nivo Slider v3.0.1
+ * http://nivo.dev7studios.com
+ *
+ * Copyright 2012, Dev7studios
+ * Free to use and abuse under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+
+/* The Nivo Slider styles */
+.nivoSlider {
+    position:relative;
+    width: 574px;
+    height: 408px;
+    overflow: hidden;
+    margin: 0 auto;
+
+}
+.nivoSlider img {
+    position:absolute;
+    width: 574px;
+    height: 408px;
+    top:0px;
+    left:0px;
+    display:none;
+}
+.nivo-main-image {
+    display: block !important;
+    position: relative !important; 
+    width: 100% !important;
+}
+
+
+/* The slices and boxes in the Slider */
+.nivo-slice {
+    display:block;
+    position:absolute;
+    z-index:5;
+    height:100%;
+    top:0;
+}
+.nivo-box {
+    display:block;
+    position:absolute;
+    z-index:5;
+    overflow:hidden;
+}
+.nivo-box img { display:block; }
+
+
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {
+    position:absolute;
+    top:50%;
+    z-index:9;
+    cursor:pointer;
+}
+.nivo-prevNav {
+    left: 0px;
+    background-image:url(../img/h-fleche.png);
+    width:14px;
+    height:7px;	
+
+}
+.nivo-nextNav {
+    right: 0px;
+    background-image:url(../img/h-fleche-n.png);
+    width:14px;
+    height:7px;	
+
+}
+/* Control nav styles (e.g. 1,2,3...) */
+.nivo-controlNav {
+    position:absolute;
+    margin-left: 807px;
+    height: 17px;
+    width: 135px;
+    top: 50px;
+
+
+}
+
+
+
+.nivo-controlNav a {
+    background:url(../img/header_btn.png);
+    cursor: pointer;
+    width: 17px;
+    height: 17px;
+    z-index: 99;
+    float:left;
+    margin-left:10px;
+    text-indent:-9999px;
+
+}
+
+.nivo-controlNav a:hover {
+    background-position:0 -17px;
+    width: 17px;
+    height: 17px;
+    z-index: 2;
+
+}
+
+.nivo-controlNav a.active {
+    background:url(../img/header_btn.png) 0 -34px;
+    width: 17px;
+    height: 17px;
+
+}
+
+

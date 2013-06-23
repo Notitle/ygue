@@ -14,7 +14,10 @@ class UsersController extends AppController {
  */
 	public function admin_index() {
 		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
+		$this->set('users', $this->paginate(/*'User.role'=>'customer'*/));
+                /**
+                 * user.role pour n'afficher QUE les clients !
+                 */
 	}
 
 /**

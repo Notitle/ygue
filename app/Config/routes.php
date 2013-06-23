@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration
  *
@@ -26,20 +27,49 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'welcomes', 'action' => 'index'));
+Router::connect('/', array('controller' => 'welcomes', 'action' => 'index'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
+/**
+ * Redirection sur les URLs de la galerie*****
+ *///*
+$urls = array(
+    '/Cours-photo/:id-:slug/*?page=:page&sort=:sort&direction=:direction&nbr=:nbr/*',
+    '/Cours-photo/:id-:slug/*?sort=:sort&direction=:direction&nbr=:nbr/*',
+    '/Cours-photo/:id-:slug/*?page=:page&nbr=:nbr/*',
+    '/Cours-photo/:id-:slug/*?page=:page/*',
+    '/Cours-photo/:id-:slug/*?nbr=:nbr/*',
+    '/Cours-photo/:id-:slug/*',
+);
+foreach ($urls as $url) {
+    Router::connect($url, array('controller' => 'categories', 'action' => 'index'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+', 'slug' => '[a-z0-9\-]+', 'page' => '[0-9]+', 'sort' => '[a-zA-Z0-9\.]+', 'direction' => '[a-zA-Z]{3,4}', 'nbr' => '[0-9]{2,3}'));
+}//*/
+
+/**
+ * Redirection sur les URLs de la galerie*****
+ */
+$urls = array(
+    '/Cours-photo/*?page=:page&sort=:sort&direction=:direction&nbr=:nbr/*',
+    '/Cours-photo/*?sort=:sort&direction=:direction&nbr=:nbr/*',
+    '/Cours-photo/*?page=:page&nbr=:nbr/*',
+    '/Cours-photo/*?page=:page/*',
+    '/Cours-photo/*?nbr=:nbr/*',
+    '/Cours-photo/*',
+);
+foreach ($urls as $url) {
+    Router::connect($url, array('controller' => 'categories', 'action' => 'index'), array('page' => '[0-9]+', 'sort' => '[a-zA-Z0-9\.]+', 'direction' => '[a-zA-Z0-9]{3,4}', 'nbr' => '[0-9]{2,3}'));
+}
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
  */
-	CakePlugin::routes();
+CakePlugin::routes();
 
 /**
  * Load the CakePHP default routes. Only remove this if you do not want to use
  * the built-in default routes.
  */
-	require CAKE . 'Config' . DS . 'routes.php';
+require CAKE . 'Config' . DS . 'routes.php';

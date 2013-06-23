@@ -1,21 +1,20 @@
-<div class="categories form">
-<?php echo $this->Form->create('Category'); ?>
-	<fieldset>
-		<legend><?php echo __('Admin Add Category'); ?></legend>
-	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('meta_title');
-		echo $this->Form->input('meta_description');
+<?php $this->set('title_for_layout', 'Ajout de catégories') ?>
+<h1>Ajouts de catégorie</h1>
+<div class='widget'>
+    <div class='widget-title'>
+        <h3>Informations</h3>
+        <ul>
+            <li><?php echo $this->html->link('Retour',array('action'=>'index','admin'=>true))?></li>
+        </ul>
+    </div>
+    <div class='widget-content'>
+        <?php echo $this->Form->create('Category'); ?>
+        <?php
+		echo $this->Form->input('name',array('label'=>'nom'));
+		echo $this->Form->input('meta_title',array('label'=>'meta title'));
+		echo $this->Form->input('meta_description',array('label'=>'meta description'));
 	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+        <?php echo $this->Form->end('Enregistrer'); ?>
 
-		<li><?php echo $this->Html->link(__('List Categories'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Products'), array('controller' => 'products', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Product'), array('controller' => 'products', 'action' => 'add')); ?> </li>
-	</ul>
+    </div>
 </div>

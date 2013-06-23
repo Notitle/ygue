@@ -1,6 +1,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+	
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^img/uploads/(carrousel|products)/thumbs/([a-zA-Z0-9\-\_\!]*)_(172x225|260x400|110x110|175x260|125x120).jpg$ index.php?url=/cropper/create.html&image=uploads/$1/$2.jpg&format=$3&dest=uploads/products/thumbs/$2_$3.jpg [QSA,L]
+	
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ index.php [QSA,L]
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 </IfModule>

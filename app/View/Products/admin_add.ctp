@@ -1,31 +1,22 @@
-<div class="products form">
-<?php echo $this->Form->create('Product'); ?>
-	<fieldset>
-		<legend><?php echo __('Admin Add Product'); ?></legend>
-	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('artist_id');
-		echo $this->Form->input('category_id');
-		echo $this->Form->input('price_size_s');
-		echo $this->Form->input('price_size_m');
-		echo $this->Form->input('price_size_l');
-		echo $this->Form->input('image');
-		echo $this->Form->input('description');
-		echo $this->Form->input('meta_title');
-		echo $this->Form->input('meta_description');
-		echo $this->Form->input('Order');
+<?php $this->set('title_for_layout', 'Ajouter un produit') ?>
+<h1>Ajouter un produit</h1>
+<div class='widget'>
+    <div class='widget-title'>
+        <h3>Ajout</h3>
+        <ul>
+            <li><?php echo $this->html->link('Retour', array('action' => 'index', 'admin' => true)) ?></li>
+        </ul>
+    </div>
+    <div class='widget-content'>
+        <?php echo $this->Form->create('Product', array('type'=>'file')); ?>
+        <?php
+		echo $this->Form->input('name',array('label'=>'Nom'));
+		echo $this->Form->input('category_id',array('label'=>'Categorie'));
+		echo $this->Form->input('visuel',array('label'=>'Visuel :','type'=>'file'));
+		echo $this->Form->input('description',array('label'=>'Description'));
+		echo $this->Form->input('meta_title',array('label'=>'meta title'));
+		echo $this->Form->input('meta_description',array('label'=>'meta description'));
 	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Products'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Categories'), array('controller' => 'categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Category'), array('controller' => 'categories', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('controller' => 'orders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
-	</ul>
+        <?php echo $this->Form->end('Enregistrer'); ?>
+    </div>
 </div>
